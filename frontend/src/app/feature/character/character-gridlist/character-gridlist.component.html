@@ -60,6 +60,10 @@
 
   <h1>Results:</h1>
 
+  <mat-paginator [length]="pageLength" [pageSize]="filters.limit" [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="pageIndex" (page)="getCharacterPage($event)" aria-label="Select page">
+  </mat-paginator>
+
   <div *ngIf="loading" class="d-flex justify-content-center">
     <div>
       <mat-spinner></mat-spinner>
@@ -67,10 +71,6 @@
       <h4>Retreiving...</h4>
     </div>
   </div>
-
-  <mat-paginator *ngIf="!loading" [length]="pageLength" [pageSize]="filters.limit" [pageSizeOptions]="pageSizeOptions"
-    (page)="getCharacterPage($event)" aria-label="Select page">
-  </mat-paginator>
 
   <mat-grid-list *ngIf="!loading" cols="{{gridCols}}" rowHeight="18rem">
     <mat-grid-tile *ngFor="let character of filteredCharacters" [colspan]="1" [rowspan]="1">

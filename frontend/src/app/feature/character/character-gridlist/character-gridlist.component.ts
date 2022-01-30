@@ -48,7 +48,7 @@ export class CharacterGridListComponent implements OnInit, AfterContentInit {
   gridCols = 4;
 
   pageLength = 100;
-  page = 1;
+  pageIndex = 0;
   pageSizeOptions: number[] = [1];
   user: User;
 
@@ -76,10 +76,10 @@ export class CharacterGridListComponent implements OnInit, AfterContentInit {
         this.pageLength = data.total;
         this.characters = data;
         this.filteredCharacters = this.characters.docs;
-        !dontShowToaster && this._snackBar.open("We found " + data.total + " results!", "Undo", { duration: 3000 });
+        !dontShowToaster && this._snackBar.open("We found " + data.total + " results!", "UNDO", { duration: 3000 });
       },
       (error) => {
-        this._snackBar.open(error, "Undo", { duration: 3000 });
+        this._snackBar.open(error, "ok", { duration: 3000 });
         this.loading = false;
       }
     );
@@ -88,6 +88,7 @@ export class CharacterGridListComponent implements OnInit, AfterContentInit {
   public getCharacterPage(event?: PageEvent) {
     this.filters.limit = "" + event.pageSize;
     this.filters.offset = "" + (event.pageIndex * parseInt(this.filters.limit));
+    this.pageIndex = event.pageIndex;
     this.getCharacters(true);
   }
 

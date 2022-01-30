@@ -32,7 +32,6 @@ exports.index = function (req, res) {
     }
 
     User.findById({ _id: decoded.sub }).then(function (user) {
-      console.log(user);
       if (filters.limit > user.maxLimit) {
         return res.status(401).json({
           status: "error",
@@ -56,9 +55,9 @@ exports.index = function (req, res) {
           });
         }).catch(function (error) {
           console.log(error);
-          res.status(400).json({
-            status: "error",
-            error: "Failed"
+          res.status(error.response.status).json({
+            status: error.response.statusText,
+            error: error.response.data
           });
         });
     });
