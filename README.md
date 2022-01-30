@@ -10,11 +10,7 @@ To get it working, follow these steps.
 
     ```
     gh repo clone aliilkertopcu/lotr-assignment
-    cd /lotr-assignment
-    cd /frontend
-    npm install
-    cd ..
-    cd /api
+    cd /lotr-assignment/api
     npm install
     ```
 2. Rename '.env.example' file in the /api directory, to '.env' and enter your API key
