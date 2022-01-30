@@ -7,8 +7,7 @@ WORKDIR /app
 # Copy dependency definitions
 COPY package*.json ./
 
-## installing and Storing node modules on a separate layer will prevent unnecessary npm installs at each build
-RUN npm ci
+RUN npm install
 
 RUN npm install -g @angular/cli
 
