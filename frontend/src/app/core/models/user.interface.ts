@@ -6,5 +6,5 @@ export interface User {
   lastName: string;
   token: string;
   email: string;
-  mobile: string;
+  maxLimit: number;
 }

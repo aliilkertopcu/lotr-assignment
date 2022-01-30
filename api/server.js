@@ -53,28 +53,14 @@ const allowedExt = [
 // Import routes
 let apiRoutes = require("./api-routes");
 // Use Api routes in the App
-app.use("/api", apiRoutes);
-
-
-app.get("*", (req, res) => {
-  if (allowedExt.filter((ext) => req.url.indexOf(ext) > 0).length > 0) {
-    res.sendFile(path.resolve(`public/${req.url}`));
-  } else {
-    res.sendFile(path.resolve("public/index.html"));
-  }
-});
-
+// app.use("/api", apiRoutes);
 // use JWT auth to secure the api, the token can be passed in the authorization header or querystring
-app.use(
+app.use("/api",
   expressJwt({
-    secret: "hebelöp",
-    // secret: environment.secret,
+    secret: environment.secret,
     algorithms: ["HS256"],
     getToken: function (req) {
-      if (
-        req.headers.authorization &&
-        req.headers.authorization.split(" ")[0] === "Bearer"
-      ) {
+      if (req.headers.authorization && req.headers.authorization.split(" ")[0] === "Bearer") {
         return req.headers.authorization.split(" ")[1];
       } else if (req.query && req.query.token) {
         return req.query.token;
@@ -89,8 +75,15 @@ app.use(
       "/*.js",
       "/*.css"
     ]
-  })
-);
+  }), apiRoutes);
+
+app.get("*", (req, res) => {
+  if (allowedExt.filter((ext) => req.url.indexOf(ext) > 0).length > 0) {
+    res.sendFile(path.resolve(`public/${req.url}`));
+  } else {
+    res.sendFile(path.resolve("public/index.html"));
+  }
+});
 
 const HOST = "0.0.0.0";
 // start server

@@ -6,7 +6,7 @@ router.get("/", function (req, res) {
   res.json({
     status: "API Its Working",
     message: "Welcome to RESTHub crafted with love!"
-    
+
   });
 });
 
@@ -28,9 +28,9 @@ router
   .route("/user/changepassword/:user_id")
   .put(userController.changePassword);
 
-// Import Character controller
+// Import character controller
 var characterController = require("./controllers/character.controller");
-// Character routes
+// character routes
 router
   .route("/characters")
   .get(characterController.index);

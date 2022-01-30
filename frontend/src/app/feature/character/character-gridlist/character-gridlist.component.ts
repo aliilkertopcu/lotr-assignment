@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MediaObserver } from '@angular/flex-layout';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from "@core/services/user.service";
+import { User } from "@core/models/user.interface";
 
 import { Router } from "@angular/router";
 
@@ -47,14 +49,15 @@ export class CharacterGridListComponent implements OnInit, AfterContentInit {
 
   pageLength = 100;
   page = 1;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageSizeOptions: number[] = [1];
+  user: User;
 
   constructor(
+    private userService: UserService,
     private _snackBar: MatSnackBar,
     private characterService: CharacterService,
     private router: Router,
     private mediaObserver: MediaObserver) { }
-
 
   private getOptions(): void {
     this.filterOptions = this.characterService.getOptions();
@@ -76,7 +79,8 @@ export class CharacterGridListComponent implements OnInit, AfterContentInit {
         !dontShowToaster && this._snackBar.open("We found " + data.total + " results!", "Undo", { duration: 3000 });
       },
       (error) => {
-        this._snackBar.open(error.message, "Undo", { duration: 3000 });
+        this._snackBar.open(error, "Undo", { duration: 3000 });
+        this.loading = false;
       }
     );
   }
@@ -96,6 +100,8 @@ export class CharacterGridListComponent implements OnInit, AfterContentInit {
   ngOnInit(): void {
     this.getOptions();
     this.getCharacters();
+    this.user = this.userService.getCurrentUser();
+    this.pageSizeOptions = [1, 5, 10, 25, 50, 100, 250, 1000].filter(o => o <= this.user.maxLimit);
   }
 
   ngAfterContentInit(): void {

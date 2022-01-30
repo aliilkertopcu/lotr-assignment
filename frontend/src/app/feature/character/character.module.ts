@@ -11,7 +11,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 
-
 import { CharacterGridListComponent } from "./character-gridlist/character-gridlist.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CoreModule } from "@core/core.module";

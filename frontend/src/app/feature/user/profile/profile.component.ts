@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
       firstName: ["", Validators.required],
       lastName: ["", Validators.required],
       email: ["", Validators.required],
-      canQuery: ["", Validators.required]
+      maxLimit: [""]
     });
   }
   createPasswordForm(): void {
