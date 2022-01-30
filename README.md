@@ -21,6 +21,10 @@ To get it working, follow these steps.
 3. Start docker ([install](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe) it if not)
 4. Run `docker-compose -f '.\docker-compose.debug.yml' up`
 
-Voila! It will probably take ~10 minutes (or my PC is slow).
+Voila!
+
+It may be fail at the first run, sometimes MongoDB and express cant be opened at the same time. If that happened just terminate the process, and compose up again.
+
+If frontend doesn't load properly, you may need to go `./lotr-assignment/frontend` and run `npm install` there too.
 
 If you fork this project and try to expand / shape it to your needs, especially adding new libraries will be unable to used till you `docker-compose -f '.\docker-compose.debug.yml' down --rmi local` and `docker-compose -f '.\docker-compose.debug.yml' up` again.
