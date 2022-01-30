@@ -30,7 +30,7 @@ services:
     ports:
       - "3000:3000" #specify ports forewarding
     environment:
-      - SECRET=Thisismysecret
+      - SECRET=Topsunuzolum
       - NODE_ENV=development
       - MONGO_DB_USERNAME=admin-user
       - MONGO_DB_PASSWORD=admin-password
