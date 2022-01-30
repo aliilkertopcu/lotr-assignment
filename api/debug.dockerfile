@@ -17,6 +17,8 @@ COPY . /api/
 
 WORKDIR /api
 
+RUN npm install
+
 # Expose the port the app runs in
 EXPOSE 3000
 

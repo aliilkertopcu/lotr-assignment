@@ -7,12 +7,10 @@ WORKDIR /app
 # Copy dependency definitions
 COPY package*.json ./
 
-RUN npm install
-
 RUN npm install -g @angular/cli
 
 COPY . /app/
 
+RUN npm install
+
 EXPOSE 4200 49153
-
-
