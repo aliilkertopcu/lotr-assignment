@@ -7,7 +7,7 @@ FROM node:16-alpine
 # Copy dependency definitions
 COPY package.json package-lock.json ./
 
-RUN npm ci && mkdir /api && mv ./node_modules ./api
+RUN npm install && mkdir /api && mv ./node_modules ./api
 
 # RUN npm ci
 
