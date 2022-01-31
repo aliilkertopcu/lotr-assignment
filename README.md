@@ -2,7 +2,7 @@
 
 MEAN stack
 
-This is a simple web application to show my adaptation skills on a job interview assignment.
+This is a simple web application to show my adaptation skills on an assignment.
 
 To get it working, follow these steps.
 
