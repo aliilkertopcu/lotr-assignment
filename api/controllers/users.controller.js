@@ -1,10 +1,8 @@
 // userController.js
 // Import user model
 User = require("../models/user.model");
-var jwt = require("jsonwebtoken");
-var bcrypt = require("bcryptjs");
-// Handle index actions
-
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const environment = require("../config/environment");
 
 exports.index = function (req, res) {
@@ -14,6 +12,7 @@ exports.index = function (req, res) {
         status: "error",
         error: "Bad Request."
       });
+      return;
     }
     res.json({
       status: "success",
@@ -30,7 +29,9 @@ exports.new = function (req, res) {
         status: "error",
         message: err
       });
+      return;
     }
+
     if (users && users.length > 0) {
       res.status(400).send({
         status: "error",
@@ -52,6 +53,7 @@ exports.new = function (req, res) {
             status: "error",
             error: err
           });
+          return;
         }
         res.json({
           message: "New user created!",
@@ -69,6 +71,7 @@ exports.view = function (req, res) {
         status: "error",
         error: err
       });
+      return;
     }
     res.json({
       message: "User details loading..",
@@ -87,6 +90,7 @@ exports.update = function (req, res) {
         status: "error",
         error: err
       });
+      return;
     }
 
     res.json({
@@ -107,6 +111,7 @@ exports.delete = function (req, res) {
           status: "error",
           error: err
         });
+        return;
       }
       res.json({
         status: "success",
@@ -123,6 +128,7 @@ exports.authenticate = function (req, res) {
         status: "error",
         error: err
       });
+      return;
     }
 
     if (user && bcrypt.compareSync(req.body.password, user.password)) {
@@ -153,6 +159,7 @@ exports.changePassword = function (req, res) {
         status: "error",
         error: err
       });
+      return;
     }
 
     if (user && bcrypt.compareSync(req.body.password, user.password)) {

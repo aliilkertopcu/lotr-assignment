@@ -1,13 +1,12 @@
 require("dotenv").config();
-let express = require("express");
-let app = express();
+const express = require("express");
+const app = express();
 const environment = require("./config/environment");
-let cors = require("cors");
-let path = require("path");
-let bodyParser = require("body-parser");
-let expressJwt = require("express-jwt");
-// Import Mongoose
-let mongoose = require("mongoose");
+const cors = require("cors");
+const path = require("path");
+const bodyParser = require("body-parser");
+const expressJwt = require("express-jwt");
+const mongoose = require("mongoose");
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -49,12 +48,9 @@ const allowedExt = [
   ".txt"
 ];
 
-
 // Import routes
 let apiRoutes = require("./api-routes");
-// Use Api routes in the App
-// app.use("/api", apiRoutes);
-// use JWT auth to secure the api, the token can be passed in the authorization header or querystring
+
 app.use("/api",
   expressJwt({
     secret: environment.secret,

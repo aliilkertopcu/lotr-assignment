@@ -1,7 +1,4 @@
-// characterController.js
-var jwt = require("jsonwebtoken");
-var bcrypt = require("bcryptjs");
-// Handle index actions
+const jwt = require("jsonwebtoken");
 
 User = require("../models/user.model");
 const environment = require("../config/environment");
@@ -19,8 +16,8 @@ exports.index = function (req, res) {
   const filters = JSON.parse(req.query.filters);
 
   if (req.headers && req.headers.authorization) {
-    var authorization = req.headers.authorization.split(' ')[1],
-      decoded;
+    const authorization = req.headers.authorization.split(' ')[1];
+    let decoded;
 
     try {
       decoded = jwt.verify(authorization, environment.secret)
@@ -32,7 +29,7 @@ exports.index = function (req, res) {
     }
 
     User.findById({ _id: decoded.sub }).then(function (user) {
-      if (filters.limit > user.maxLimit) {
+      if (user.maxLimit && filters.limit > user.maxLimit) {
         return res.status(401).json({
           status: "error",
           error: "Gotcha! You are not authorized for querying " + filters.limit + " characters."
@@ -54,7 +51,6 @@ exports.index = function (req, res) {
             data: responseData.data
           });
         }).catch(function (error) {
-          console.log(error);
           res.status(error.response.status).json({
             status: error.response.statusText,
             error: error.response.data
