@@ -28,3 +28,8 @@ It may be fail at the first run, sometimes MongoDB and express cant be opened at
 If frontend doesn't load properly, you may need to go `./lotr-assignment/frontend` and run `npm install` there too.
 
 If you fork this project and try to expand / shape it to your needs, especially adding new libraries will be unable to used till you `docker-compose -f '.\docker-compose.debug.yml' down --rmi local` and `docker-compose -f '.\docker-compose.debug.yml' up` again.
+
+toDo:
+- convert var statements to let / const at some points
+- error handling if-else structure is not optimal and faulty
+- use const at server.js
