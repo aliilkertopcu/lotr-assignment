@@ -12,6 +12,8 @@ To get it working, follow these steps.
     gh repo clone aliilkertopcu/lotr-assignment
     cd ./lotr-assignment/api
     npm install
+    cd ./lotr-assignment/frontend
+    npm install
     ```
 2. Rename '.env.example' file in the /api directory, to '.env' and enter your API key
     ```
@@ -21,6 +23,14 @@ To get it working, follow these steps.
 3. Start docker ([install](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe) it if not)
 4. Run `docker-compose -f '.\docker-compose.debug.yml' up`
 
-Voila! It will probably take ~10 minutes (or my PC is slow).
+Voila!
+
+It may fail at the first run, sometimes MongoDB and express can't be opened at the same time. If that happened just terminate the process, and compose up again.
 
 If you fork this project and try to expand / shape it to your needs, especially adding new libraries will be unable to used till you `docker-compose -f '.\docker-compose.debug.yml' down --rmi local` and `docker-compose -f '.\docker-compose.debug.yml' up` again.
+
+- [x] convert var statements to let / const at some points
+- [x] error handling if-else structure is not optimal and faulty
+- [x] use const at server.js
+- [ ] deletion of unused libraries
+- [ ] /(optional) give the cards to quote (:
