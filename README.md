@@ -2,7 +2,7 @@
 
 MEAN stack
 
-This is a simple web application to show my adaptation skills on an assignment.
+This is a simple web application to learn Angular a bit.
 
 To get it working, follow these steps.
 
